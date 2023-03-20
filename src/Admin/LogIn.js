@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { UserContext } from "./use";
+import { UserContext } from "./User";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -26,25 +26,24 @@ const LogIn = () => {
   // This function will redirect the user once the authentication is done.
   const redirectNow = () => {
     const redirectTo = location.search.replace("?redirectTo=", "");
-    navigate(redirectTo ? redirectTo : "/Home");
+    navigate(redirectTo ? redirectTo : "/HomeStudent");
   }
 
-  // Buggy- want it to log off on close before uncommenting
-  // // If the user is already logged in
-  // const loadUser = async () => {
-  //   if (!user) {
-  //     const fetchedUser = await fetchUser();
-  //     if (fetchedUser) {
-  //       // Redirecting
-  //       redirectNow();
-  //     }
-  //   }
-  // }
+  // If the user is already logged in
+  const loadUser = async () => {
+    if (!user) {
+      const fetchedUser = await fetchUser();
+      if (fetchedUser) {
+        // Redirecting
+        redirectNow();
+      }
+    }
+  }
 
-  // // Check if user is logged in
-  // useEffect(() => {
-  //   loadUser(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  // Check if user is logged in
+  useEffect(() => {
+    loadUser(); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit = async (event) => {
     try {
@@ -83,7 +82,7 @@ const LogIn = () => {
     />
     <Button variant="contained" color="primary" onClick={onSubmit}>LogIn</Button>
     {/* Take to contact page */}
-    {/* <p>Don't have an account? <Link to="/signup">Signup</Link></p> */}
+    <p>Don't have an account? <Link to="../Components/Contact.js">Contact Us</Link></p>
   </form>
 }
 

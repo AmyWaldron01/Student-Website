@@ -1,17 +1,16 @@
 import { Button } from '@mui/material'
 import { useContext } from 'react';
-import { UserContext } from '../contexts/user.context';
+import { UserContext } from '../Admin/Users';
 
-export default function logout() {
+export default function LogOut() {
   const { logOutUser } = useContext(UserContext);
 
-  // This function is called when the user clicks the "Logout" button.
+  // Clicks the "Logout" button.
   const logOut = async () => {
     try {
-      // Calling the logOutUser function from the user context.
+      // Calling logOutUser from user
       const loggedOut = await logOutUser();
-      // Now we will refresh the page, and the user will be logged out and
-      // redirected to the login page because of the <PrivateRoute /> component.
+      // Refresh to be Logged out
       if (loggedOut) {
         window.location.reload(true);
       }
@@ -22,7 +21,7 @@ export default function logout() {
 
   return (
     <>
-      <h1>Welcome to expengo</h1>
+      <h1>Sign Off Below</h1>
       <Button variant="contained" onClick={logOut}>Logout</Button>
     </>
   )

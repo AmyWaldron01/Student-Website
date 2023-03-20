@@ -1,13 +1,13 @@
 //Imports
 import React from "react";
 
-export class Home extends React.Component {
+export class HomeStudent extends React.Component {
     render() {
         return (
             <div className="App">
                 <center>
-                <h1>Welcome to Student Repository</h1>
-                <h2 > It is {new Date().toLocaleTimeString()}.</h2 >
+                <h1>Welcome to Student Gradee Database</h1>
+                <h2 > It is {new Date().toLocaleTimeString()}</h2 >
                 <ul>
                     <br></br>
                     <li>Keep track of your grades by adding them to a repository</li>

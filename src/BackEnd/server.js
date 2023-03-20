@@ -24,9 +24,6 @@ async function main() {
   //Username: user Password: pass
 }
 
-//const grading = mongoose.createConnection('mongodb+srv://user:pass@gradecluster.srojooy.mongodb.net/Grades?retryWrites=true&w=majority');
-//const users = mongoose.createConnection('mongodb+srv://admin:adminPass@gradecluster.srojooy.mongodb.net/College?retryWrites=true&w=majority');
-
 //Convert to Type
 const gradeSchema = new mongoose.Schema({
   module: String,
@@ -36,17 +33,8 @@ const gradeSchema = new mongoose.Schema({
   year: Number
 });
 
-// const userSchema = new mongoose.Schema({
-//   collegeID: String,
-//   name: String,
-//   department: String,
-//   email: String,
-//   password: String
-// });
-
 //Model to interact with databases
 const gradeModel = mongoose.model('listGrades', gradeSchema);
-//const userModel = mongoose.model('listUsers', userSchema);
 
 //To allow connection from host to other
 app.use(cors());
@@ -80,13 +68,6 @@ app.post('/api/grades', (req, res) => {
 app.get('/api/grades', (req, res) => {
   //To interact to database
   gradeModel.find((error, data) => {
-    res.json(data);
-  })
-})
-
-app.get('/api/users', (req, res) => {
-  //To interact to database
-  userModel.find((error, data) => {
     res.json(data);
   })
 })

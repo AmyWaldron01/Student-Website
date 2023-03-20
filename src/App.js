@@ -14,7 +14,7 @@ import Nav from 'react-bootstrap/Nav';
 //Here will be the classes from different Components
 import LogIn  from './Admin/LogIn';
 import PrivateRoute from './Admin/PrivateRoute';
-import { Home } from './Components/Home';
+import { HomeStudent } from './Basics/HomeStudent';
 import { Calculate } from './ToDo/Calculate';
 import { AddGrade } from './Components/AddGrade';
 import { ShowGrades } from './Components/ShowGrades';
@@ -26,7 +26,7 @@ import {
 } from 'react-router-dom';
 
 //Import User, if logged in
-import { UserProvider } from "./Admin/use";
+import { UserProvider } from "./Admin/User";
 
 //Class
 class App extends React.Component {
@@ -41,7 +41,7 @@ class App extends React.Component {
             {/* Define NavBar */}
             <Navbar bg="primary" variant="dark">
               <Container>
-                <Navbar.Brand href="/Home">Grades4U</Navbar.Brand>
+                <Navbar.Brand href="/HomeStudent">Grades4U</Navbar.Brand>
                 <Nav className="me-auto">
                   <Nav.Link href="/Calculate">Calculate</Nav.Link>
                   <Nav.Link href="/AddGrade">AddGrade</Nav.Link>                  
@@ -56,7 +56,7 @@ class App extends React.Component {
               <Route exact path="/" element={<LogIn />}></Route>
               {/* Private Routing */}
               <Route element={<PrivateRoute />}>
-                <Route exact path="/Home" element={<Home />}></Route>
+                <Route exact path="/HomeStudent" element={<HomeStudent />}></Route>
                 <Route exact path="/Calculate" element={<Calculate />}></Route>
                 <Route exact path="/AddGrade" element={<AddGrade />}></Route>            
                 <Route exact path="/ShowGrades" element={<ShowGrades />}></Route>
