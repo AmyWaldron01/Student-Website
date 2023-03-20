@@ -11,18 +11,22 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 
 //Import Components
-//Here will be the classes from different pages
-import { Home } from './Pages/Home';
-import { LogIn } from './Pages/LogIn';
-import { Module } from './Pages/Module';
-import { Year } from './Pages/Year';
-import { GPA } from './Pages/GPA';
+//Here will be the classes from different Components
+import LogIn  from './Admin/LogIn';
+import PrivateRoute from './Admin/PrivateRoute';
+import { Home } from './Components/Home';
+import { Calculate } from './ToDo/Calculate';
+import { AddGrade } from './Components/AddGrade';
+import { ShowGrades } from './Components/ShowGrades';
 
 //Import Router
 import {
   BrowserRouter as Router,
   Routes, Route
 } from 'react-router-dom';
+
+//Import User, if logged in
+import { UserProvider } from "./Admin/use";
 
 //Class
 class App extends React.Component {
@@ -31,29 +35,35 @@ class App extends React.Component {
     //Returns after running
     return (
       <Router>
-        <div className="App">
-          {/* Define NavBar */}
-          <Navbar bg="primary" variant="dark">
-            <Container>
-              <Navbar.Brand href="/Home">Grades4U</Navbar.Brand>
-              <Nav className="me-auto">
-                <Nav.Link href="/Module">Calculate Module Status</Nav.Link>
-                <Nav.Link href="/Year">Calculate Years Grade</Nav.Link>                  
-                <Nav.Link href="/GPA">Calculate GPA</Nav.Link>        
-              </Nav>
-            </Container>
-          </Navbar>
+        {/* User can access any page */}
+        <UserProvider>
+          <div className="App">
+            {/* Define NavBar */}
+            <Navbar bg="primary" variant="dark">
+              <Container>
+                <Navbar.Brand href="/Home">Grades4U</Navbar.Brand>
+                <Nav className="me-auto">
+                  <Nav.Link href="/Calculate">Calculate</Nav.Link>
+                  <Nav.Link href="/AddGrade">AddGrade</Nav.Link>                  
+                  <Nav.Link href="/ShowGrades">Display Grades</Nav.Link>        
+                </Nav>
+              </Container>
+            </Navbar>
 
-          {/* Use Routing to change to page and call different components */}
-          <Routes>
-            {/* Make it so Home Page is default*/}
-            <Route path='/' element={<LogIn></LogIn>}></Route>
-            <Route path='/Home' element={<Home></Home>}></Route>
-            <Route path='/Module' element={<Module></Module>}></Route>
-            <Route path='/Year' element={<Year></Year>}></Route>            
-            <Route path='/GPA' element={<GPA></GPA>}></Route>
-          </Routes>
-        </div>
+            {/* Use Routing to change to page and call different components */}
+            <Routes>
+              {/* Make it so Log In is default*/}
+              <Route exact path="/" element={<LogIn />}></Route>
+              {/* Private Routing */}
+              <Route element={<PrivateRoute />}>
+                <Route exact path="/Home" element={<Home />}></Route>
+                <Route exact path="/Calculate" element={<Calculate />}></Route>
+                <Route exact path="/AddGrade" element={<AddGrade />}></Route>            
+                <Route exact path="/ShowGrades" element={<ShowGrades />}></Route>
+              </Route>
+            </Routes>
+          </div>
+        </UserProvider>
       </Router>
     );
   }

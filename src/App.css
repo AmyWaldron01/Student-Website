@@ -1,3 +1,38 @@
+/* My CSS */
+.form-group{
+  margin-bottom: 10px;
+}
+
+.module{
+  margin-right: 80px;
+}
+
+.teacher{
+  margin-right: 69px;
+}
+
+.exam{
+  margin-right: 72px;
+}
+
+.grade{
+  margin-right: 15px;
+}
+
+.year{
+  margin-right: 63px;
+}
+
+form{
+  text-align: left;
+  margin-left: 200px;
+}
+
+.submit{
+  margin-left: 120px;
+}
+
+/*******    Original CSS    *************************************************************************/
 .App {
   text-align: center;
 }
